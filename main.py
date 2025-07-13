@@ -1,3 +1,4 @@
+import os
 import urllib.request
 
 import pandas as pd
@@ -8,6 +9,11 @@ response = urllib.request.urlretrieve(
 )
 
 data_frame = pd.read_csv("raw.csv")
+
+output_path = "./output/"
+
+if not os.path.isdir(output_path):
+    os.makedirs(output_path)
 
 # Sắp xếp các bộ phim theo ngày phát hành giảm dần rồi lưu ra một file mới
 sorted = data_frame.sort_values(by="release_date", ascending=False)
